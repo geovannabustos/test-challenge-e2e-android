@@ -1,0 +1,5 @@
+target/
+Videos/
+build
+.gradle
+.idea
