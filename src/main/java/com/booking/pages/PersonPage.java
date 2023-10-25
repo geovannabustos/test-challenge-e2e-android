@@ -1,7 +1,8 @@
 package com.booking.pages;
 
-import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.WebElementFacade;
+
+import java.time.Duration;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -28,6 +29,7 @@ public class PersonPage extends GeneralPageObject {
     @AndroidFindBy(id = "com.booking:id/action_button")
     private WebElementFacade btnAddData;
 
+
     public void setName(String nameValue) {
         txtName.sendKeys(nameValue);
     }
@@ -41,23 +43,23 @@ public class PersonPage extends GeneralPageObject {
     }
 
     public void setAddress(String addressValue) {
-        if (txtAddress.isVisible()) {
+        if (txtAddress.isPresent()) {
             txtAddress.sendKeys(addressValue);
         }
     }
 
     public void setTxtZipCode(String zipCodeValue) {
-        if (txtZipCode.isVisible()) {
+        if (txtZipCode.isPresent()) {
             txtZipCode.sendKeys(zipCodeValue);
         }
     }
 
     public void setCity(String cityValue) {
-        if (txtZipCode.isVisible()) {
+        if (txtCity.isPresent()) {
             txtCity.sendKeys(cityValue);
-            //scroll
-            getDriver().findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().resourceIdMatches(\"com.booking:id/content_recycler_view\")).flingForward()"));
         }
+        //scroll
+        getDriver().findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().resourceIdMatches(\"com.booking:id/content_recycler_view\")).flingForward()"));
     }
 
     public void setCountry(String countryValue) {

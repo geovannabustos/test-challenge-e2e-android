@@ -5,8 +5,6 @@ import org.assertj.core.api.SoftAssertions;
 import org.fluentlenium.core.annotation.Page;
 
 public class FinishBookingStep {
-
-
     private SoftAssertions softly = new SoftAssertions();
     @Page
     FinishBookingPage finishBookingPage;

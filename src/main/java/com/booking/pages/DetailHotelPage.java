@@ -10,9 +10,6 @@ public class DetailHotelPage extends GeneralPageObject {
     private WebElementFacade hotelValue;
     @AndroidFindBy(id = "com.booking:id/price_view_taxes_and_charges")
     private WebElementFacade hotelValueTaxes;
-
-    @AndroidFindBy(id = "com.booking:id/rooms_guests_display")
-    private WebElementFacade detailRoomAndGuest;
     @AndroidFindBy(id = "com.booking:id/select_room_cta")
     private WebElementFacade btnSelectRoom;
 
@@ -24,9 +21,6 @@ public class DetailHotelPage extends GeneralPageObject {
     }
     public String getHotelValueTaxes(){
         return hotelValueTaxes.getText();
-    }
-    public String getDetailRoomAndGuest(){
-        return detailRoomAndGuest.getText();
     }
 
     public void tapBtnSelectRoom() {

@@ -26,9 +26,6 @@ public class SelectHotelStep {
     public String getHotelValueTaxes(){
         return detailHotelPage.getHotelValueTaxes();
     }
-    public String getDetailRoomAndGuest(){
-        return detailHotelPage.getDetailRoomAndGuest();
-    }
     public void selectRoom(){
         detailHotelPage.tapBtnSelectRoom();
         roomPage.tapBtnReserveOption();

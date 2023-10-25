@@ -39,6 +39,8 @@ public class RegisterDetailBookingStep {
         occupancyActivityPage.setAdultsCount(adultsCountValue);
         occupancyActivityPage.setChildrenCount(childrenCountValue,ageValues);
         occupancyActivityPage.tapBtnApply();
+    }
+    public void searchBooking(){
         searchActivityPage.tapBtnSearch();
     }
 

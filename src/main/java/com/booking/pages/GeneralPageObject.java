@@ -33,6 +33,7 @@ public class GeneralPageObject extends PageObject {
   protected AppiumDriver appiumDriver;
   protected TouchActions actions;
   protected static final Logger LOGGER = LoggerFactory.getLogger(StepInterceptor.class);
+  public static final int WAITING_ELEMENT_SECONDS = 2;
 
   public GeneralPageObject() {
     androidDriver = getProxiedDriver();
@@ -44,6 +45,14 @@ public class GeneralPageObject extends PageObject {
     WebDriverWait wait = new WebDriverWait(getDriver(), seconds);
     wait.until(ExpectedConditions.visibilityOf(element));
     return element;
+  }
+
+  public boolean isDisplayed(WebElement element) {
+    try {
+      return waitForElement(element, WAITING_ELEMENT_SECONDS).isDisplayed();
+    } catch (Exception e) {
+      return false;
+    }
   }
 
   protected void executeCommandCmd(String command) {

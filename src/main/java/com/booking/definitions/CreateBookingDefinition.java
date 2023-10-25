@@ -1,8 +1,8 @@
 package com.booking.definitions;
 
-import com.booking.pages.ConfirmationBookingPage;
 import com.booking.steps.ConfirmationBookingStep;
 import com.booking.steps.FinishBookingStep;
+import com.booking.steps.MessageStep;
 import com.booking.steps.RegisterDataPersonStep;
 import com.booking.steps.RegisterDetailBookingStep;
 import com.booking.steps.SelectHotelStep;
@@ -29,7 +29,7 @@ public class CreateBookingDefinition {
     private String hotelName;
     private String hotelValue;
     private String hotelValueTaxes;
-    private String detailRoomAndGuest;
+
     @Steps
     RegisterDetailBookingStep registerDetailBookingStep;
     @Steps
@@ -42,6 +42,8 @@ public class CreateBookingDefinition {
     FinishBookingStep finishBookingStep;
     @Steps
     ConfirmationBookingStep confirmationBookingStep;
+    @Steps
+    MessageStep messageStep;
 
     @Dado("que abro la app Booking")
     public void openApp() {
@@ -66,6 +68,7 @@ public class CreateBookingDefinition {
         adultsCount = adultsCountValue;
         childrenCount = childrenCountValue;
         registerDetailBookingStep.registerDataBooking(destinationValue,dateCheckinValue,dateCheckoutValue,roomsCountValue,adultsCountValue,childrenCountValue,ageValues);
+        registerDetailBookingStep.searchBooking();
     }
     @Y("selecciono el hotel")
     public void selectHotel(){
@@ -73,11 +76,10 @@ public class CreateBookingDefinition {
         hotelValue = selectHotelStep.getHotelValue();
         hotelName = selectHotelStep.getHotelName();
         hotelValueTaxes = selectHotelStep.getHotelValueTaxes();
-        detailRoomAndGuest = selectHotelStep.getDetailRoomAndGuest();
         selectHotelStep.selectRoom();
     }
 
-    @Y("registro los datos de la persona que reserva, nombre {string}, apellido {string}, email {string}, direccion {string}, codigo postal {string}, ciudad {string}, pais {string}, mobile {string}")
+    @Y("registro los datos de la persona que reserva, nombre {string}, apellido {string}, email {string}, direccion {string}, codigo postal {string}, ciudad {string}, pais {string}, celular {string}")
     public void registerPersonBooking(String nameValue, String lastnameValue, String emailValue, String addressValue, String postalCodeValue, String cityValue, String countryValue, String mobileValue) {
         email = emailValue;
         registerDataPersonStep.registerDataPerson(nameValue,lastnameValue,emailValue,addressValue,postalCodeValue,cityValue,countryValue,mobileValue);
@@ -98,4 +100,16 @@ public class CreateBookingDefinition {
         confirmationBookingStep.confirmationBooking(email);
     }
 
+    @Cuando("busco alojamientos sin ingresar el destino")
+    public void searchBooking(){
+        registerDetailBookingStep.searchBooking();
+    }
+    @Entonces("se presentara una alerta {string}")
+    public void showAlertError(String message){
+        messageStep.verifyAlert(message);
+    }
+    @Entonces("se presentara un mensaje {string}")
+    public void showMessageError(String message){
+        messageStep.verifyMessage(message);
+    }
 }
