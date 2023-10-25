@@ -28,10 +28,13 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
-      with:
-        arguments: build
+    - name: Install and Run Appium Server
+      run: |
+        et -ex
+        npm install -g appium
+        appium -v
+        appium &>/dev/null &
+        
     - name: Set up Android Emulator
       uses: reactivecircus/android-emulator-runner@v2
       with:
