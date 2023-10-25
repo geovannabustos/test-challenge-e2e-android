@@ -32,5 +32,11 @@ jobs:
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
         arguments: build
-    - name: Execute Tests
-      run: ./gradlew clean test
+    - name: Set up Android Emulator
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 30
+        target: default
+        arch: x86
+        profile: Nexus 5
+        script: ./gradlew test --info
