@@ -45,4 +45,4 @@ jobs:
         target: ${{ matrix.target }}
         arch: x86
         profile: Nexus 5
-        script: ./gradlew connectedCheck
+        script: ./gradlew test --info
