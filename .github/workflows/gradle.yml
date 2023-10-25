@@ -42,9 +42,7 @@ jobs:
         target: default
         arch: x86
         profile: Nexus 5
-        
-    - name: Start Emulator
-      run: adb devices
+        script: ./gradlew clean
 
     - name: Build and Run Android Tests
       run: ./gradlew clean connectedAndroidTest
