@@ -45,3 +45,4 @@ jobs:
         arch: x86
         profile: Nexus 4
         script: ./gradlew test --info
+        
