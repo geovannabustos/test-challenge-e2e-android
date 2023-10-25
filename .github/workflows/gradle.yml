@@ -42,7 +42,7 @@ jobs:
         target: default
         arch: x86
         profile: Nexus 5
-        script: ./gradlew clean
+        script: ./gradlew clean build
 
     - name: Build and Run Android Tests
       run: ./gradlew clean connectedAndroidTest
