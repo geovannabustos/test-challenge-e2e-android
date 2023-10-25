@@ -1,0 +1,79 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        google()
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:3.2.0"
+        classpath "net.serenity-bdd:serenity-single-page-report:2.1.4"
+        classpath "gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.8"
+        classpath "io.freefair.gradle:lombok-plugin:5.1.1"
+    }
+}
+
+plugins {
+    id "net.serenity-bdd.serenity-gradle-plugin" version "3.2.0"
+    id 'java'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    google()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+ext {
+    slf4jVersion = '1.7.7'
+    serenityCoreVersion = '3.2.0'
+    junitVersion = '4.13.1'
+    assertJVersion = '3.8.0'
+    logbackVersion = '1.2.3'
+    lombokVersion = '1.18.20'
+}
+
+dependencies {
+    implementation "net.serenity-bdd:serenity-core:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-junit:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-cucumber:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-rest-assured:${serenityCoreVersion}",
+            "io.appium:java-client:7.6.0",
+            "junit:junit:${junitVersion}",
+            "org.assertj:assertj-core:${assertJVersion}",
+            "org.projectlombok:lombok:${lombokVersion}",
+            "com.googlecode.json-simple:json-simple:1.1.1",
+            "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.13.0",
+            "org.slf4j:slf4j-simple:1.7.32"
+}
+
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
+
+serenity {
+    reports = ["single-page-html"]
+}
+
+gradle.startParameter.continueOnFailure = true
+
+test.finalizedBy(aggregate)
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+//Número de paralelos de ejecución
+test {
+    maxParallelForks = 1
+}
