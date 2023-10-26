@@ -8,8 +8,8 @@ Proyecto de automatización de pruebas E3E con Serenity-Appium-Cucumber
 - **Appium**: https://appium.io/docs/en/about-appium/api/
 
 ## Compilación:
-$ ./gradle clean assemble
-$ ./gradle clean compile
+- ./gradle clean assemble
+- ./gradle clean compile
 
 ## Ejecución de los Test
-$ ./gradle clean test
+- ./gradle clean test
